@@ -13,6 +13,7 @@ export default class Game extends React.Component {
             }],
             currentStep: 0,
         }
+        this.handleClick = this.handleClick.bind(this)
     }
 
     /**
@@ -107,7 +108,7 @@ export default class Game extends React.Component {
                     <Board
                         squares={squares}
                         highlights={indexesForHighlighting}
-                        onClick={(number) => this.handleClick(number)}
+                        onClick={this.handleClick}
                     />
                     <ShoppingList name="ddA"/>
                 </div>
