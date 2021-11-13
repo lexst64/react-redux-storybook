@@ -2,6 +2,9 @@ import {calculateWinner} from "../utils";
 import React from "react";
 import Board from "./Board";
 import ShoppingList from "./ShoppingList";
+import StarRating from "./StarRating/StarRating";
+import ColorRating from "./ColorRating/ColorRating";
+import colorData from './../data/colorData.json'
 
 export default class Game extends React.Component {
     constructor(props) {
@@ -111,6 +114,8 @@ export default class Game extends React.Component {
                         onClick={this.handleClick}
                     />
                     <ShoppingList name="ddA"/>
+                    <StarRating totalStars={10} />
+                    <ColorRating initialData={colorData} />
                 </div>
                 <div className="game-info">
                     <div>{status}</div>

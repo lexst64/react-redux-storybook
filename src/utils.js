@@ -27,3 +27,5 @@ export function calculateWinner(squares = []) {
     }
     return null
 }
+
+export const getDeepCopy = (object) => JSON.parse(JSON.stringify(object))
