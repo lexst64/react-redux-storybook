@@ -1,48 +1,48 @@
-import React, {useContext} from 'react'
+import React, {useState} from 'react'
 import ColorRatingItem from "./ColorRatingItem";
 import './ColorRating.scss'
-import {colorRatingServiceContext} from "../Services/ColorRatingService";
+import {getDeepCopy} from "../../utils";
 
-const ColorRating = () => {
-    const {colorRatings, setColorRatings} = useContext(colorRatingServiceContext)
+const ColorRating = ({ initialData = [] }) => {
+    const [colorData, setColorData] = useState(getDeepCopy(initialData))
 
-    // const findColorDataById = (id) => {
-    //     return colorData.find(data => data.id === id)
-    // }
+    const findColorDataById = (id) => {
+        return colorData.find(data => data.id === id)
+    }
 
-    // const starClickHandler = (id, newRating) => {
-    //     return (index) => {
-    //         const newColorData = colorData.reduce((newArray, dataElement) => {
-    //             const newDataElement = getDeepCopy(dataElement)
-    //             if (newDataElement.id === id) {
-    //                 newDataElement.rating = index + 1
-    //             }
-    //             newArray.push(newDataElement)
-    //             return newArray
-    //         }, [])
-    //
-    //         setColorData(newColorData)
-    //     }
-    // }
+    const starClickHandler = (id) => {
+        return (index) => {
+            const newColorData = colorData.reduce((newArray, dataElement) => {
+                const newDataElement = getDeepCopy(dataElement)
+                if (newDataElement.id === id) {
+                    newDataElement.rating = index + 1
+                }
+                newArray.push(newDataElement)
+                return newArray
+            }, [])
 
-    // const removeClickHandler = (id) => {
-    //     return () => {
-    //         const newColorData = getDeepCopy(colorData)
-    //             .filter(data => data.id !== id)
-    //         setColorData(newColorData)
-    //     }
-    // }
+            setColorData(newColorData)
+        }
+    }
+
+    const removeClickHandler = (id) => {
+        return () => {
+            const newColorData = getDeepCopy(colorData)
+                .filter(data => data.id !== id)
+            setColorData(newColorData)
+        }
+    }
 
     const getColorRatingItems = () => {
-        return colorRatings.map(({ id, title, color, rating }) => {
+        return colorData.map(({ id, title, color }) => {
             return (
                 <ColorRatingItem
                     key={id}
                     colorCode={color}
                     title={title}
-                    starClickHandler={rating => setColorRatings(id, rating)}
-                    selectedStars={rating}
-                    // removeClickHandler={removeClickHandler(id)}
+                    starClickHandler={starClickHandler(id)}
+                    selectedStars={findColorDataById(id).rating}
+                    removeClickHandler={removeClickHandler(id)}
                 />
             )
         })
