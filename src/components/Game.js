@@ -4,9 +4,9 @@ import Board from "./Board";
 import ShoppingList from "./ShoppingList";
 import StarRating from "./StarRating/StarRating";
 import ColorRating from "./ColorRating/ColorRating";
-import colorData from './../data/colorData.json'
+import {ColorRatingServiceContextProvider} from "./Services/ColorRatingService";
 
-export default class Game extends React.Component {
+class Game extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -114,8 +114,13 @@ export default class Game extends React.Component {
                         onClick={this.handleClick}
                     />
                     <ShoppingList name="ddA"/>
-                    <StarRating totalStars={10} />
-                    <ColorRating initialData={colorData} />
+                    {/*<ColorRatingServiceContextProvider defaultState={[{*/}
+                    {/*    "id": "83c7ba2f-7392-4d7d-9e23-35adbe186045",*/}
+                    {/*    "rating": 3*/}
+                    {/*}]}>*/}
+                    {/*    <StarRating totalStars={10} />*/}
+                    {/*</ColorRatingServiceContextProvider>*/}
+                    <ColorRating />
                 </div>
                 <div className="game-info">
                     <div>{status}</div>
@@ -135,4 +140,13 @@ export default class Game extends React.Component {
             xIsNext: (moveIndex % 2) === 0,
         })
     }
+}
+
+
+export default () => {
+    return (
+        <ColorRatingServiceContextProvider>
+            <Game />
+        </ColorRatingServiceContextProvider>
+    )
 }
