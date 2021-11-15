@@ -3,10 +3,7 @@ import Square from "./Square";
 
 export default class Board extends React.Component {
     checkForHighlighted(index) {
-        if (this.props.highlights.includes(index)) {
-            return true
-        }
-        return false
+        return this.props.highlights.includes(index)
     }
 
     renderSquare(number) {
