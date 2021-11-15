@@ -13,7 +13,7 @@ const StarRating = ({
             .map((_, index) => (
                 <Star
                     key={index}
-                    onClick={() => clickHandler(index + 1)}
+                    onClick={() => clickHandler(index)}
                     selected={index < selectedStars}
                 />
             ))
