@@ -2,7 +2,7 @@ import React from 'react'
 import StarRating from "../StarRating/StarRating";
 import ColorElement from "./ColorElement";
 import TitleH3 from "../TitleH3/TitleH3";
-import RemoveButton from "../RemoveButton";
+import RemoveButton from "../RemoveButton/RemoveButton";
 
 const ColorRatingItem = ({
     title,
