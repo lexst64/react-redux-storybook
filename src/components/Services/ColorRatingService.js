@@ -14,10 +14,16 @@ export const ColorRatingServiceContextProvider = ({children, defaultState}) => {
         setColorRatings(colorRatingsCopy)
     }
 
+    const removeColorRatingsHandler = (id) => {
+        const newColorRatings = colorRatings.filter(rating => rating.id !== id)
+        setColorRatings(newColorRatings)
+    }
+
     return (
         <colorRatingServiceContext.Provider value={{
             colorRatings,
-            setColorRatings: setColorRatingsHandler
+            setColorRatings: setColorRatingsHandler,
+            removeColorRatings: removeColorRatingsHandler,
         }}>
             {children}
         </colorRatingServiceContext.Provider>

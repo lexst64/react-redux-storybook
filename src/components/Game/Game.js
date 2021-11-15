@@ -1,12 +1,8 @@
-import {calculateWinner} from "../utils";
+import {calculateWinner} from "../../utils";
 import React from "react";
 import Board from "./Board";
-import ShoppingList from "./ShoppingList";
-import StarRating from "./StarRating/StarRating";
-import ColorRating from "./ColorRating/ColorRating";
-import {ColorRatingServiceContextProvider} from "./Services/ColorRatingService";
 
-class Game extends React.Component {
+export default class Game extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -113,14 +109,6 @@ class Game extends React.Component {
                         highlights={indexesForHighlighting}
                         onClick={this.handleClick}
                     />
-                    <ShoppingList name="ddA"/>
-                    {/*<ColorRatingServiceContextProvider defaultState={[{*/}
-                    {/*    "id": "83c7ba2f-7392-4d7d-9e23-35adbe186045",*/}
-                    {/*    "rating": 3*/}
-                    {/*}]}>*/}
-                    {/*    <StarRating totalStars={10} />*/}
-                    {/*</ColorRatingServiceContextProvider>*/}
-                    <ColorRating />
                 </div>
                 <div className="game-info">
                     <div>{status}</div>
@@ -140,13 +128,4 @@ class Game extends React.Component {
             xIsNext: (moveIndex % 2) === 0,
         })
     }
-}
-
-
-export default () => {
-    return (
-        <ColorRatingServiceContextProvider>
-            <Game />
-        </ColorRatingServiceContextProvider>
-    )
 }
